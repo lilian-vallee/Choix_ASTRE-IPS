@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,11 +16,28 @@ public class Moteur {
     private List<QuestionModel> models;
     private List<Etudiant> etudiants;
 
-    public Boolean saveModel(){
+
+    /**
+     * Constructeur basic
+     */
+    public Moteur() {
+        this.models = new ArrayList<QuestionModel>();
+        this.etudiants = new ArrayList<Etudiant>();
+    }
+
+    public void addModel(QuestionModel questionModel){
+        models.add(questionModel);
+    }
+
+    /**
+     * Sauvegarde les models de question dans un fichier json
+     * @return
+     */
+    public Boolean saveModel(String nameFile){
         try {
 
             ObjectMapper mapper = new ObjectMapper();
-            mapper.writeValue(new File("src/main/resources/static/Save/Model_Save.json"), this.models);
+            mapper.writeValue(new File("src/main/resources/static/Save/"+ nameFile +".json"), this.models);
 
             return true;
         } catch (IOException e) {
