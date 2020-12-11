@@ -49,4 +49,9 @@ class MoteurTest {
 
 
     }
+
+    @Test
+    void loadQuestionnaire3A() {
+        m.loadQuestionnaire3A();
+    }
 }

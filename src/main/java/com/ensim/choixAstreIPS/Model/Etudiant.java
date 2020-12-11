@@ -21,4 +21,12 @@ public class Etudiant {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
+
+    @Override
+    public String toString() {
+        return "Etudiant{" +
+                "id='" + id + '\'' +
+                ", questions=" + questions +
+                '}';
+    }
 }

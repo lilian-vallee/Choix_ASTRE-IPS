@@ -28,4 +28,13 @@ public class Question {
     public void setReponse(String reponse) {
         this.reponse = reponse;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "index='" + index + '\'' +
+                ", intitule='" + intitule + '\'' +
+                ", reponse='" + reponse + '\'' +
+                '}';
+    }
 }
