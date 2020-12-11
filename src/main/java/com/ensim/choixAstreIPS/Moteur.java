@@ -13,8 +13,27 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Moteur {
+
+    //Attribut
+    //==========================================================================
+
     private List<QuestionModel> models;
     private List<Etudiant> etudiants;
+
+
+    //Get/set
+    //==========================================================================
+
+    public List<QuestionModel> getModels() {
+        return models;
+    }
+
+    public List<Etudiant> getEtudiants() {
+        return etudiants;
+    }
+
+    //Constructeur
+    //==========================================================================
 
 
     /**
@@ -29,6 +48,10 @@ public class Moteur {
         models.add(questionModel);
     }
 
+
+    //Methodes
+    //==========================================================================
+
     /**
      * Sauvegarde les models de question dans un fichier json
      * @return
@@ -41,7 +64,25 @@ public class Moteur {
 
             return true;
         } catch (IOException e) {
-            Logger.getAnonymousLogger().log(Level.WARNING,"Echec à l'ecriture de l'objet en String");
+            Logger.getAnonymousLogger().log(Level.WARNING,"Echec à l'ecriture du fichier de sauvegarde");
+            return false;
+        }
+    }
+
+    /**
+     * Chargement de fichier de sauvegarde
+     * @param nameFile
+     * @return
+     */
+    public Boolean loadModel(String nameFile){
+        try {
+
+            ObjectMapper mapper = new ObjectMapper();
+            this.models = mapper.readValue(new File("src/main/resources/static/Save/"+ nameFile +".json"), this.models.getClass());
+            return true;
+
+        } catch (IOException e) {
+            Logger.getAnonymousLogger().log(Level.WARNING,"Echec à la lecture du fichier de sauvegarde");
             return false;
         }
     }
