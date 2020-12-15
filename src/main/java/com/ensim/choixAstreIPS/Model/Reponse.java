@@ -1,5 +1,8 @@
 package com.ensim.choixAstreIPS.Model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Reponse extends Question{
 
     private String reponse;
@@ -12,6 +15,8 @@ public class Reponse extends Question{
         this.reponse = reponse;
     }
 
+    public Reponse(){super();}
+
     public Reponse(int index, String intitule, String reponse) {
         super(index, intitule);
         this.reponse = reponse;
@@ -20,7 +25,9 @@ public class Reponse extends Question{
     @Override
     public String toString() {
         return "Reponse{" +
-                "reponse='" + reponse + '\'' +
+                "index='" + index + '\'' +
+                ", intitulé='" + intitule + '\'' +
+                ", reponse='" + reponse + '\'' +
                 '}';
     }
 }

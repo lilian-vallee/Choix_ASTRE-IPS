@@ -3,20 +3,20 @@ package com.ensim.choixAstreIPS.Model;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table
 public class Etudiant {
     @Id
     private String id;
     @ElementCollection
-    private List<Question> reponses;
+    private List<Reponse> reponses;
 
-    public Etudiant(String id, List<Question> questions) {
+    public Etudiant(){}
+
+    public Etudiant(String id, List<Reponse> reponses) {
         this.id = id;
-        this.reponses = questions;
+        this.reponses = reponses;
     }
 
     public String getId() {
@@ -27,19 +27,19 @@ public class Etudiant {
         this.id = id;
     }
 
-    public List<Question> getQuestions() {
+    public List<Reponse> getReponses() {
         return reponses;
     }
 
-    public void setQuestions(List<Question> questions) {
-        this.reponses = questions;
+    public void setReponses(List<Reponse> reponses) {
+        this.reponses = reponses;
     }
 
     @Override
     public String toString() {
         return "Etudiant{" +
                 "id='" + id + '\'' +
-                ", questions=" + reponses +
+                ", reponses=" + reponses +
                 '}';
     }
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Etudiants</title>
+        <link href="webjars/bootstrap/4.5.3/css/bootstrap.min.css"
+              rel="stylesheet">
+    </head>
+    <body>
+        <nav th:insert="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
+        <div class="container">
+            <h1>Liste des étudiants</h1>
+
+            <ul th:each="etudiant: ${allEtudiants}">
+                <li th:text="${etudiant.id}"></li>
+                <ul th:each="reponse: ${etudiant.reponses}">
+                    <li th:text="${reponse.reponse}"></li>
+                </ul>
+            </ul>
+        </div>
+    </body>
+</html>

@@ -4,6 +4,7 @@ package com.ensim.choixAstreIPS;
 import com.ensim.choixAstreIPS.Model.*;
 import com.ensim.choixAstreIPS.Model.ModelJson.MotsCleJson;
 import com.ensim.choixAstreIPS.Model.ModelJson.QuestionModelJson;
+import com.ensim.choixAstreIPS.Utils.QuestionUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.util.ResourceUtils;
 
@@ -138,15 +139,15 @@ public class Moteur {
 
                 // loop on each response to the quizz
                 for (Questionnaire3A questionnaire3A : q) {
-                    List<Question> questions = new ArrayList<>();
+                    List<Reponse> reponses = new ArrayList<>();
                     // Loop on each question
                     int i = 0;
                     for (String rep:
                          questionnaire3A.getAll()) {
-                        questions.add(new Question(i, rep));
+                        reponses.add(new Reponse(i, QuestionUtils.getQuestion(i) , rep));
                         i++;
                     }
-                    etudiants.add( new Etudiant( String.valueOf(questions.get(1)), questions) );
+                    etudiants.add( new Etudiant( String.valueOf(reponses.get(1).getReponse()), reponses) );
                 }
             }
         } catch (IOException e) {

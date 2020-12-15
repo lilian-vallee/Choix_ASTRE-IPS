@@ -1,16 +1,16 @@
 package com.ensim.choixAstreIPS.Model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table
 public class Question {
-
     @Id
-    private int index;
-    private String intitule;
+    protected int index;
+    protected String intitule;
+
+    public Question(){}
 
     public Question(int index, String intitule) {
         this.index = index;
