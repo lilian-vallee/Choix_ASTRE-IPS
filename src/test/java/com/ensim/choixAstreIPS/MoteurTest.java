@@ -53,5 +53,6 @@ class MoteurTest {
     @Test
     void loadQuestionnaire3A() {
         m.loadQuestionnaire3A();
+        assertEquals( 37, m.getEtudiants().size() );
     }
 }

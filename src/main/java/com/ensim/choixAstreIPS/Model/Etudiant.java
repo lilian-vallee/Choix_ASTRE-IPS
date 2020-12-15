@@ -6,6 +6,11 @@ public class Etudiant {
     private String id;
     private List<Question> questions;
 
+    public Etudiant(String id, List<Question> questions) {
+        this.id = id;
+        this.questions = questions;
+    }
+
     public String getId() {
         return id;
     }

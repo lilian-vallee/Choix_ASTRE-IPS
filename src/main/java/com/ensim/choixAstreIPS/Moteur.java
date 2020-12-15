@@ -5,6 +5,7 @@ import com.ensim.choixAstreIPS.Model.Etudiant;
 import com.ensim.choixAstreIPS.Model.Question;
 import com.ensim.choixAstreIPS.Model.QuestionModel;
 import com.ensim.choixAstreIPS.Model.Questionnaire3A;
+import com.ensim.choixAstreIPS.Utils.QuestionUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.util.ResourceUtils;
 
@@ -110,42 +111,19 @@ public class Moteur {
                 for (Questionnaire3A questionnaire3A : q) {
                     List<Question> questions = new ArrayList<>();
                     // Loop on each question
-                    for (String s:
+                    int i = 0;
+                    for (String rep:
                          questionnaire3A.getAll()) {
-                        questions.add(createQuestion(s));
+                        questions.add(new Question(i, rep));
+                        i++;
                     }
-                    etudiants.add( createEtudiant( String.valueOf(questions.get(1)), questions) );
+                    etudiants.add( new Etudiant( String.valueOf(questions.get(1)), questions) );
                 }
-                Logger.getLogger("loadQuestionnaire3A").info(etudiants.toString());
             }
         } catch (IOException e) {
            Logger.getLogger("loadQuestionnaire3A").severe("IO error : " + e.getMessage());
            return false;
         }
         return true;
-    }
-
-    /**
-     * Creates a Question from a String (response)
-     * @param r
-     * @return
-     */
-    private Question createQuestion(String r) {
-        Question question = new Question();
-        question.setReponse(r);
-        return question;
-    }
-
-    /**
-     * Creates an Etudiant with a given id (String) and questions (List)
-     * @param id
-     * @param questions
-     * @return
-     */
-    private Etudiant createEtudiant(String id, List<Question> questions) {
-        Etudiant etu = new Etudiant();
-        etu.setId(id);
-        etu.setQuestions(questions);
-        return etu;
     }
 }
