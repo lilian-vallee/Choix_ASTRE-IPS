@@ -1,9 +1,9 @@
 package com.ensim.choixAstreIPS;
 
+import com.ensim.choixAstreIPS.Model.MotCle;
 import com.ensim.choixAstreIPS.Model.QuestionModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -21,21 +21,22 @@ class MoteurTest {
 
     @Test
     void saveModel() {
-        qm = new QuestionModel("1","Question?", 0.2f);
+        qm = new QuestionModel(1,"Question?", 0.2f);
+
+        MotCle mc = new MotCle("mot", 1, 5);
+        qm.addMotCle(mc);
 
         m.addModel(qm);
-        List<QuestionModel> want = m.getModels();
+
         m.saveModel("Test_save_model");
 
-        m.loadModel("Test_save_model");
-        assertEquals(want, m.getModels());
     }
 
 
     @Test
     void addModel() {
 
-        qm = new QuestionModel("1","Question?", 0.2f);
+        qm = new QuestionModel(1,"Question?", 0.2f);
 
         m.addModel(qm);
 
@@ -45,7 +46,7 @@ class MoteurTest {
     @Test
     void loadModel() {
         m.loadModel("Test_save_model");
-        qm = new QuestionModel("1","Question?", 0.2f);
+        qm = new QuestionModel(1,"Question?", 0.2f);
 
 
     }

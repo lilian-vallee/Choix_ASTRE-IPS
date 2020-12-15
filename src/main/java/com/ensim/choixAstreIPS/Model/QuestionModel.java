@@ -3,27 +3,9 @@ package com.ensim.choixAstreIPS.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionModel {
-    private String index;
-    private String intitule;
+public class QuestionModel extends Question{
     private List<MotCle> motsCles = new ArrayList<MotCle>();
     private float coeff;
-
-    public String getIndex() {
-        return index;
-    }
-
-    public void setIndex(String index) {
-        this.index = index;
-    }
-
-    public String getIntitule() {
-        return intitule;
-    }
-
-    public void setIntitule(String intitule) {
-        this.intitule = intitule;
-    }
 
     public List<MotCle> getMotsCles() {
         return motsCles;
@@ -51,9 +33,16 @@ public class QuestionModel {
      * @param intitule
      * @param coeff
      */
-    public QuestionModel(String index, String intitule, float coeff) {
-        this.index = index;
-        this.intitule = intitule;
+    public QuestionModel(int index, String intitule, float coeff) {
+        super(index,intitule);
         this.coeff = coeff;
+    }
+
+    //Methodes
+    //==========================================================================
+
+    public Boolean addMotCle(MotCle motCle){
+        motsCles.add(motCle);
+        return true;
     }
 }

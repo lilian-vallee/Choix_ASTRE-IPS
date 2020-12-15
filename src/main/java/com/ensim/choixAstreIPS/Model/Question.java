@@ -1,12 +1,16 @@
 package com.ensim.choixAstreIPS.Model;
 
+@Entity
+@Table
 public class Question {
-    private int index;
-    private String reponse;
 
-    public Question(int index, String reponse) {
+    @Id
+    private int index;
+    private String intitule;
+
+    public Question(int index, String intitule) {
         this.index = index;
-        this.reponse = reponse;
+        this.intitule = intitule;
     }
 
     public int getIndex() {
@@ -17,19 +21,19 @@ public class Question {
         this.index = index;
     }
 
-    public String getReponse() {
-        return reponse;
+    public String getIntitule() {
+        return intitule;
     }
 
-    public void setReponse(String reponse) {
-        this.reponse = reponse;
+    public void setIntitule(String intitule) {
+        this.intitule = intitule;
     }
 
     @Override
     public String toString() {
         return "Question{" +
                 "index='" + index + '\'' +
-                ", reponse='" + reponse + '\'' +
+                ", intitulé='" + intitule + '\'' +
                 '}';
     }
 }

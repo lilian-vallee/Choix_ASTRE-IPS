@@ -37,6 +37,14 @@ public class Moteur {
         return etudiants;
     }
 
+    public void setModels(List<QuestionModel> models) {
+        this.models = models;
+    }
+
+    public void setEtudiants(List<Etudiant> etudiants) {
+        this.etudiants = etudiants;
+    }
+
     //Constructeur
     //==========================================================================
 
@@ -83,7 +91,20 @@ public class Moteur {
         try {
 
             ObjectMapper mapper = new ObjectMapper();
+
+            File file = ResourceUtils.getFile("src/main/resources/static/Save/"+ nameFile +".json");
+
+            if (file.exists()){
+                //filemodel = mapper.readValue(new FileInputStream(file), )
+
+            }
+            else{
+                return false;
+            }
+
             this.models = mapper.readValue(new File("src/main/resources/static/Save/"+ nameFile +".json"), this.models.getClass());
+
+
             return true;
 
         } catch (IOException e) {
