@@ -1,11 +1,9 @@
 package com.ensim.choixAstreIPS;
 
 
-import com.ensim.choixAstreIPS.Model.Etudiant;
-import com.ensim.choixAstreIPS.Model.Question;
-import com.ensim.choixAstreIPS.Model.QuestionModel;
-import com.ensim.choixAstreIPS.Model.Questionnaire3A;
-import com.ensim.choixAstreIPS.Utils.QuestionUtils;
+import com.ensim.choixAstreIPS.Model.*;
+import com.ensim.choixAstreIPS.Model.ModelJson.MotsCleJson;
+import com.ensim.choixAstreIPS.Model.ModelJson.QuestionModelJson;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.util.ResourceUtils;
 
@@ -88,6 +86,9 @@ public class Moteur {
      * @return
      */
     public Boolean loadModel(String nameFile){
+
+        models = new ArrayList<QuestionModel>();
+
         try {
 
             ObjectMapper mapper = new ObjectMapper();
@@ -95,17 +96,24 @@ public class Moteur {
             File file = ResourceUtils.getFile("src/main/resources/static/Save/"+ nameFile +".json");
 
             if (file.exists()){
-                //filemodel = mapper.readValue(new FileInputStream(file), )
+                QuestionModelJson[] filemodel = mapper.readValue(new FileInputStream(file), QuestionModelJson[].class);
 
+                for (QuestionModelJson q : filemodel) {
+
+                    QuestionModel questionModel = new QuestionModel(q.getIndex(), q.getIntitule(), q.getCoeff());
+
+                    for (MotsCleJson mc : q.getMotsCles()) {
+                        MotCle motCle = new MotCle(mc.getMot(),mc.getIps(),mc.getAstre());
+                        questionModel.addMotCle(motCle);
+                    }
+
+                    models.add(questionModel);
+                }
+                return true;
             }
             else{
                 return false;
             }
-
-            this.models = mapper.readValue(new File("src/main/resources/static/Save/"+ nameFile +".json"), this.models.getClass());
-
-
-            return true;
 
         } catch (IOException e) {
             Logger.getAnonymousLogger().log(Level.WARNING,"Echec à la lecture du fichier de sauvegarde");

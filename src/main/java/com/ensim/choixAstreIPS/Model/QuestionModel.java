@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionModel extends Question{
+
     private List<MotCle> motsCles = new ArrayList<MotCle>();
-    private float coeff;
+    private double coeff;
 
     public List<MotCle> getMotsCles() {
         return motsCles;
@@ -15,7 +16,7 @@ public class QuestionModel extends Question{
         this.motsCles = motsCles;
     }
 
-    public float getCoeff() {
+    public double getCoeff() {
         return coeff;
     }
 
@@ -33,7 +34,7 @@ public class QuestionModel extends Question{
      * @param intitule
      * @param coeff
      */
-    public QuestionModel(int index, String intitule, float coeff) {
+    public QuestionModel(int index, String intitule, Double coeff) {
         super(index,intitule);
         this.coeff = coeff;
     }

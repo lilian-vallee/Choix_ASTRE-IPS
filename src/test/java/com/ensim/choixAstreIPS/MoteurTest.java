@@ -21,14 +21,17 @@ class MoteurTest {
 
     @Test
     void saveModel() {
-        qm = new QuestionModel(1,"Question?", 0.2f);
+        qm = new QuestionModel(1,"Question?", 0.2);
 
         MotCle mc = new MotCle("mot", 1, 5);
         qm.addMotCle(mc);
 
         m.addModel(qm);
 
+        List<QuestionModel> want = m.getModels();
+
         m.saveModel("Test_save_model");
+        m.loadModel("Test_save_model");
 
     }
 
@@ -36,7 +39,7 @@ class MoteurTest {
     @Test
     void addModel() {
 
-        qm = new QuestionModel(1,"Question?", 0.2f);
+        qm = new QuestionModel(1,"Question?", 0.2);
 
         m.addModel(qm);
 
@@ -46,7 +49,7 @@ class MoteurTest {
     @Test
     void loadModel() {
         m.loadModel("Test_save_model");
-        qm = new QuestionModel(1,"Question?", 0.2f);
+        qm = new QuestionModel(1,"Question?", 0.2);
 
 
     }

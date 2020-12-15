@@ -1,5 +1,9 @@
 package com.ensim.choixAstreIPS.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 @Entity
 @Table
 public class Question {
