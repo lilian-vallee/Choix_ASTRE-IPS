@@ -16,7 +16,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Moteur {
+public enum Moteur {
+    INSTANCE;
 
     //Attribut
     //==========================================================================
@@ -43,11 +44,11 @@ public class Moteur {
     /**
      * Constructeur basic
      */
-    public Moteur() {
+    Moteur() {
         this.models = new ArrayList<>();
         this.etudiants = new ArrayList<>();
         loadModel("Model_Save");
-        //loadQuestionnaire3A();
+        loadQuestionnaire3A();
     }
 
     public void addModel(QuestionModel questionModel){

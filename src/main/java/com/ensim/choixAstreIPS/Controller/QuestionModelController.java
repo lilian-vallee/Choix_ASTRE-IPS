@@ -10,8 +10,7 @@ public class QuestionModelController {
 
     @GetMapping("/QuestionModel")
     public String getModels(Model model) {
-        Moteur moteur = new Moteur();
-        model.addAttribute("allQuestionsModels", moteur.getModels());
+        model.addAttribute("allQuestionsModels", Moteur.INSTANCE.getModels());
         return "QuestionModel";
     }
 }

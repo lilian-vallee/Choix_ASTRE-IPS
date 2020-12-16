@@ -13,14 +13,23 @@
 <div class="container">
     <h1 th:text="'Etudiant ' + ${etudiant.id}"></h1>
 
-    <div id="accordion">
-        <div class="card">
-            <div id="collapse" class="collapse show" data-parent="#accordion">
-                <div class="card-body">
-                    <div th:each="reponse: ${etudiant.reponses}" th:text="${reponse.reponse}"></div>
-                </div>
-            </div>
-        </div>
+    <div class="table-responsive">
+        <table class="table table-stripped">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Question</th>
+                <th scope="col">Réponse</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reponse: ${etudiant.reponses}">
+                <td scope="row" th:text="${reponse.index}"></td>
+                <td th:text="${questions[reponse.index]}"></td>
+                <td th:text="${reponse.reponse}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 </body>
