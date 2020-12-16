@@ -20,7 +20,7 @@ class MoteurTest {
     }
 
     @Test
-    void saveModel() {
+    void saveLoadModel() {
         qm = new QuestionModel(1,"Question?", 0.2);
 
         MotCle mc = new MotCle("mot", 1, 5);
@@ -33,6 +33,8 @@ class MoteurTest {
         m.saveModel("Test_save_model");
         m.loadModel("Test_save_model");
 
+        assertEquals(want.get(0).toString(), m.getModels().get(0).toString());
+
     }
 
 
@@ -44,14 +46,6 @@ class MoteurTest {
         m.addModel(qm);
 
         assertEquals(1 , m.getModels().size());
-    }
-
-    @Test
-    void loadModel() {
-        m.loadModel("Test_save_model");
-        qm = new QuestionModel(1,"Question?", 0.2);
-
-
     }
 
     @Test

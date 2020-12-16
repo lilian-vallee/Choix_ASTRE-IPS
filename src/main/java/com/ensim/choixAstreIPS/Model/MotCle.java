@@ -64,5 +64,12 @@ public class MotCle {
         Astre = astre;
     }
 
-
+    @Override
+    public String toString() {
+        return "MotCle{" +
+                "mot='" + mot + '\'' +
+                ", Ips=" + Ips +
+                ", Astre=" + Astre +
+                '}';
+    }
 }

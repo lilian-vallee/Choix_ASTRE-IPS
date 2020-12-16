@@ -46,4 +46,14 @@ public class QuestionModel extends Question{
         motsCles.add(motCle);
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "QuestionModel{" +
+                "motsCles=" + motsCles +
+                ", coeff=" + coeff +
+                ", index=" + index +
+                ", intitule='" + intitule + '\'' +
+                '}';
+    }
 }

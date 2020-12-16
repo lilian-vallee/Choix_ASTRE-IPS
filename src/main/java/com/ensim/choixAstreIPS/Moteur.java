@@ -52,8 +52,8 @@ public class Moteur {
      * Constructeur basic
      */
     public Moteur() {
-        this.models = new ArrayList<QuestionModel>();
-        this.etudiants = new ArrayList<Etudiant>();
+        loadModel("Model_Save");
+        //loadQuestionnaire3A();
     }
 
     public void addModel(QuestionModel questionModel){
