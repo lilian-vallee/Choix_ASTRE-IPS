@@ -1,8 +1,6 @@
 package com.ensim.choixAstreIPS.Model;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity

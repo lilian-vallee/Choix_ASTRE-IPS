@@ -1,11 +1,30 @@
 package com.ensim.choixAstreIPS.Model;
 
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 
-@Entity
-public class Reponse extends Question{
+@Embeddable
+public class Reponse{
+
+    private int index;
+    private String intitule;
 
     private String reponse;
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public String getIntitule() {
+        return intitule;
+    }
+
+    public void setIntitule(String intitule) {
+        this.intitule = intitule;
+    }
 
     public String getReponse() {
         return reponse;
@@ -18,7 +37,8 @@ public class Reponse extends Question{
     public Reponse(){super();}
 
     public Reponse(int index, String intitule, String reponse) {
-        super(index, intitule);
+        this.index = index;
+        this.intitule = intitule;
         this.reponse = reponse;
     }
 

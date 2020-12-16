@@ -25,7 +25,7 @@
             <tbody>
             <tr th:each="reponse: ${etudiant.reponses}">
                 <td scope="row" th:text="${reponse.index}"></td>
-                <td th:text="${questions[reponse.index]}"></td>
+                <td th:text="${reponse.intitule}"></td>
                 <td th:text="${reponse.reponse}"></td>
             </tr>
             </tbody>

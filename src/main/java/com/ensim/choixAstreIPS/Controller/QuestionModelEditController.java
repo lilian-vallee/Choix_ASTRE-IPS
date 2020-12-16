@@ -11,8 +11,7 @@ public class QuestionModelEditController {
 
     @GetMapping("/QuestionModelEdit")
     public String getModels(@RequestParam int index, Model model) {
-        Moteur moteur = new Moteur();
-        QuestionModel questionModel = moteur.getModels().get(index-1);
+        QuestionModel questionModel = Moteur.INSTANCE.getModels().get(index-1);
         model.addAttribute("questionModel", questionModel);
         model.addAttribute("getMotCle", questionModel.getMotsCles());
         return "QuestionModelEdit";

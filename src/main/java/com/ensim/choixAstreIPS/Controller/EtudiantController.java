@@ -1,8 +1,10 @@
 package com.ensim.choixAstreIPS.Controller;
 
 import com.ensim.choixAstreIPS.Model.Etudiant;
+import com.ensim.choixAstreIPS.Model.Repository.EtudiantRepository;
 import com.ensim.choixAstreIPS.Moteur;
 import com.ensim.choixAstreIPS.Utils.QuestionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,17 +13,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class EtudiantController {
 
+    @Autowired
+    EtudiantRepository etudiantRepository;
+
+
     @GetMapping("/etudiants")
     public String getEtudiants(Model model) {
-        model.addAttribute("allEtudiants", Moteur.INSTANCE.getEtudiants());
+        if( etudiantRepository.count() == 0 ) {
+            etudiantRepository.saveAll(Moteur.INSTANCE.getEtudiants());
+        }
+        model.addAttribute("allEtudiants", etudiantRepository.findAll());
         return "etudiants";
     }
 
     @GetMapping("/reponses")
     public String getReponsesFromEtudiant(@RequestParam String etu, Model model) {
-        Etudiant etud = Moteur.INSTANCE.getEtudiants().stream().filter(etudiant -> etu.equals(etudiant.getId())).findFirst().orElse(new Etudiant());
-        model.addAttribute("etudiant", etud);
-        model.addAttribute("questions", QuestionUtils.getQuestionsList());
+        Etudiant etud = new Etudiant();
+        if(etudiantRepository.findById(etu).isPresent() ) {
+            etud = etudiantRepository.findById(etu).get();
+        }
+        model.addAttribute("etudiant", etud );
         return "reponses";
     }
 }
