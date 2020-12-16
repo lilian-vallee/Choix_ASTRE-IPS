@@ -5,18 +5,25 @@
         <title>Etudiants</title>
         <link href="webjars/bootstrap/4.5.3/css/bootstrap.min.css"
               rel="stylesheet">
+        <script src="webjars/jquery/3.5.1/jquery.min.js"></script>
+        <script src="webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
     </head>
     <body>
         <nav th:insert="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
         <div class="container">
             <h1>Liste des étudiants</h1>
 
-            <ul th:each="etudiant: ${allEtudiants}">
-                <li th:text="${etudiant.id}"></li>
-                <ul th:each="reponse: ${etudiant.reponses}">
-                    <li th:text="${reponse.reponse}"></li>
-                </ul>
-            </ul>
+            <form action="reponses" method="get">
+                <div class="form-group row">
+                    <select name="etu" id="etudiantsList">
+                        <option value="default" selected>Choisissez un étudiant</option>
+                        <option th:each="etudiant: ${allEtudiants}" th:value="${etudiant.id}" th:text="${etudiant.id}"></option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </div>
+            </form>
         </div>
     </body>
 </html>
