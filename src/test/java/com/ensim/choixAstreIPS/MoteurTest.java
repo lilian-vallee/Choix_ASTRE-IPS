@@ -16,7 +16,7 @@ class MoteurTest {
 
     @BeforeEach
     void setUp() {
-        m = new Moteur();
+        m = Moteur.INSTANCE;
     }
 
     @Test

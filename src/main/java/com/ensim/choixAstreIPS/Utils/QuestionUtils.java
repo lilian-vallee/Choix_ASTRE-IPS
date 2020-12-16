@@ -50,4 +50,6 @@ public class QuestionUtils {
         else return questionsList[index];
     }
 
+    public static String[] getQuestionsList() { return questionsList; }
+
 }
