@@ -15,10 +15,7 @@
 
             <ul th:each="QuestionModel: ${allQuestionsModels}">
 
-                <a th:href="@{/QuestionModelEdit}" th:text="${QuestionModel.index} + ' - ' + ${QuestionModel.intitule}"></a>
-
-                <li th:text="${QuestionModel.index}"></li>
-                <li th:text="${QuestionModel.intitule}"></li>
+                <a th:href="@{/QuestionModelEdit(index=${QuestionModel.index})}" th:text="${QuestionModel.index} + ' - ' + ${QuestionModel.intitule}"></a>
 
             </ul>
         </div>

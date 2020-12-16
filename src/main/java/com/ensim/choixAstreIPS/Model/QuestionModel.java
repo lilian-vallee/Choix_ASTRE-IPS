@@ -20,7 +20,7 @@ public class QuestionModel extends Question{
         return coeff;
     }
 
-    public void setCoeff(float coeff) {
+    public void setCoeff(double coeff) {
         this.coeff = coeff;
     }
 

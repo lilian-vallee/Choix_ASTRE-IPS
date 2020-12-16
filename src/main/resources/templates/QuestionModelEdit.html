@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>QuestionModelEdit</title>
+        <link href="webjars/bootstrap/4.5.3/css/bootstrap.min.css"
+            rel="stylesheet">
+    </head>
+    <body>
+        <nav th:insert="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
+
+        <div class="container">
+            <h1>Paramètre de la question :</h1>
+
+            <p th:text="${questionModel.index} + ' - ' + ${questionModel.intitule}"></p>
+
+            <form action="#" th:action="@{/SaveCoeff}" th:object="${questionModel}" method="post">
+                <p>Coefficient :</p>
+                <input type="number" th:field="*{coeff}">
+                <input type="submit" value="Save">
+            </form>
+
+            <ul th:each="question: ${getMotCle}">
+
+            </ul>
+
+        </div>
+    </body>
+</html>
