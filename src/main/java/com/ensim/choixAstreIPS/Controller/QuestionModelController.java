@@ -14,5 +14,4 @@ public class QuestionModelController {
         model.addAttribute("allQuestionsModels", moteur.getModels());
         return "QuestionModel";
     }
-
 }
