@@ -21,8 +21,8 @@ public class Moteur {
     //Attribut
     //==========================================================================
 
-    private List<QuestionModel> models;
-    private List<Etudiant> etudiants;
+    private final List<QuestionModel> models;
+    private final List<Etudiant> etudiants;
 
 
     //Get/set
@@ -36,14 +36,6 @@ public class Moteur {
         return etudiants;
     }
 
-    public void setModels(List<QuestionModel> models) {
-        this.models = models;
-    }
-
-    public void setEtudiants(List<Etudiant> etudiants) {
-        this.etudiants = etudiants;
-    }
-
     //Constructeur
     //==========================================================================
 
@@ -52,6 +44,8 @@ public class Moteur {
      * Constructeur basic
      */
     public Moteur() {
+        this.models = new ArrayList<>();
+        this.etudiants = new ArrayList<>();
         loadModel("Model_Save");
         //loadQuestionnaire3A();
     }
@@ -88,7 +82,7 @@ public class Moteur {
      */
     public Boolean loadModel(String nameFile){
 
-        models = new ArrayList<QuestionModel>();
+        models.clear();
 
         try {
 
