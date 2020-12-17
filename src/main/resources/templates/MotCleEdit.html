@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+    <head th:insert="head">
+        <title>MotCleEdit</title>
+    </head>
+    <body>
+        <nav th:insert="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
+
+        <div class="container">
+            <h1>Paramètre du mot :</h1>
+
+            <form action="#" th:action="@{/MotCleEdit}" th:object="${motCle}" method="post">
+
+                <p>mot : <input type="text" value="${motCle.mot}" th:field="*{mot}"></p>
+                <p>IPS : <input type="number" value="${motCle.ips}" th:field="*{ips}">
+                <p>ASTRE : <input type="number" value="${motCle.astre}" th:field="*{astre}">
+
+                <input type="submit" value="Save">
+            </form>
+
+        </div>
+    </body>
+</html>

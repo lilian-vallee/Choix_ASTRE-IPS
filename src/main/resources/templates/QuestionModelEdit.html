@@ -27,11 +27,11 @@
 
             <ul th:each="motCle: ${getMotsCles}">
 
-                <a th:href="@{/MotCleEdit(motCle=${motCle})}" th:text="${motCle.mot} + ' - IPS : ' + ${motCle.ips} + ' ; ASTRE : ' + ${motCle.astre}"></a>
+                <a th:href="@{/MotCleEdit(qIndex = ${questionModel.index-1},mIndex=${getMotsCles.indexOf(motCle)})}" th:text="${motCle.mot} + ' - IPS : ' + ${motCle.ips} + ' ; ASTRE : ' + ${motCle.astre}"></a>
 
             </ul>
 
-            <a th:href="@{/MotCleEdit(motCle = ${newMotCle})}">Nouveau mot Clé</a>
+            <a th:href="@{/MotCleEdit(qIndex = ${questionModel.index-1},mIndex=-1)}">Nouveau mot Clé</a>
 
         </div>
     </body>

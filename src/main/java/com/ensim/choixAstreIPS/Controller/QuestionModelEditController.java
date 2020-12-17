@@ -11,17 +11,23 @@ import org.springframework.web.bind.annotation.*;
 public class QuestionModelEditController {
 
     @GetMapping("/QuestionModelEdit")
-    public String getModels(@RequestParam int index, Model model) {
+    public String getModels(@RequestParam(required = false, defaultValue = "-1") int index, Model model) {
+        if(index == -1){
+            index = (int) model.getAttribute("qIndex");
+        }
+        else{
+            model.addAttribute("qIndex", index-1);
+        }
         QuestionModel questionModel = Moteur.INSTANCE.getModels().get(index-1);
         model.addAttribute("questionModel", questionModel);
         model.addAttribute("getMotsCles", questionModel.getMotsCles());
-        model.addAttribute("newMotCle", new MotCle("mot",0,0));
         return "QuestionModelEdit";
     }
 
     @PostMapping("/QuestionModelEdit")
-    public String SaveCoeff(@ModelAttribute QuestionModel questionModel, @RequestParam int index){
-        Moteur.INSTANCE.getModels().set(index-1, questionModel);
+    public String SaveCoeff(QuestionModel questionModel, @RequestParam int index, Model model){
+        Moteur.INSTANCE.getModels().get(index-1).setIntitule(questionModel.getIntitule());
+        Moteur.INSTANCE.getModels().get(index-1).setCoeff(questionModel.getCoeff());
         return "QuestionModelEdit";
     }
 }
