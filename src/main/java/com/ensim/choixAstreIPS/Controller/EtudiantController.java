@@ -18,11 +18,18 @@ public class EtudiantController {
 
 
     @GetMapping("/etudiants")
-    public String getEtudiants(Model model) {
+    public String getEtudiants(@RequestParam String etu, Model model) {
         if( etudiantRepository.count() == 0 ) {
             etudiantRepository.saveAll(Moteur.INSTANCE.getEtudiants());
         }
         model.addAttribute("allEtudiants", etudiantRepository.findAll());
+
+        Etudiant etud = new Etudiant();
+        if(etudiantRepository.findById(etu).isPresent() ) {
+            etud = etudiantRepository.findById(etu).get();
+        }
+        model.addAttribute("etudiant", etud );
+
         return "etudiants";
     }
 
