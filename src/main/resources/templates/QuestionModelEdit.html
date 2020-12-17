@@ -10,17 +10,28 @@
         <div class="container">
             <h1>Paramètre de la question :</h1>
 
-            <p th:text="${questionModel.index} + ' - ' + ${questionModel.intitule}"></p>
+            <form action="#" th:action="@{/QuestionModelEdit}" th:object="${questionModel}" method="post">
 
-            <form action="#" th:action="@{/SaveCoeff}" th:object="${questionModel}" method="post">
-                <p>Coefficient :</p>
-                <input type="number" th:field="*{coeff}">
+                <p th:text="${'Index : ' + questionModel.index}">
+
+                </p>
+                <input type="hidden" value="${questionModel.index}" th:field="*{index}">
+
+                <p>Intitulé : <input type="text" value="${question.intitule}"th:field="*{intitule}">
+                </p>
+
+                <p>Coefficient : <input type="number" th:field="*{coeff}"></p>
+
                 <input type="submit" value="Save">
             </form>
 
-            <ul th:each="question: ${getMotCle}">
+            <ul th:each="motCle: ${getMotsCles}">
+
+                <a th:href="@{/MotCleEdit(motCle=${motCle})}" th:text="${motCle.mot} + ' - IPS : ' + ${motCle.ips} + ' ; ASTRE : ' + ${motCle.astre}"></a>
 
             </ul>
+
+            <a th:href="@{/MotCleEdit(motCle = ${newMotCle})}">Nouveau mot Clé</a>
 
         </div>
     </body>
