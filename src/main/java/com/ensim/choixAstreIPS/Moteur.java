@@ -6,11 +6,13 @@ import com.ensim.choixAstreIPS.Model.ModelJson.MotsCleJson;
 import com.ensim.choixAstreIPS.Model.ModelJson.QuestionModelJson;
 import com.ensim.choixAstreIPS.Utils.QuestionUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -71,7 +73,7 @@ public enum Moteur {
 
             return true;
         } catch (IOException e) {
-            Logger.getAnonymousLogger().log(Level.WARNING,"Echec à l'ecriture du fichier de sauvegarde");
+            Logger.getLogger("saveModel").severe("Echec à l'ecriture du fichier de sauvegarde : " + e.getMessage());
             return false;
         }
     }
@@ -86,13 +88,12 @@ public enum Moteur {
         models.clear();
 
         try {
-
             ObjectMapper mapper = new ObjectMapper();
 
-            File file = ResourceUtils.getFile("src/main/resources/static/Save/"+ nameFile +".json");
+            InputStream inputStream = new ClassPathResource("static/Save/"+ nameFile +".json").getInputStream();;
 
-            if (file.exists()){
-                QuestionModelJson[] filemodel = mapper.readValue(new FileInputStream(file), QuestionModelJson[].class);
+            if ( inputStream.available() > 0 ){
+                QuestionModelJson[] filemodel = mapper.readValue(inputStream, QuestionModelJson[].class);
 
                 for (QuestionModelJson q : filemodel) {
 
@@ -112,7 +113,7 @@ public enum Moteur {
             }
 
         } catch (IOException e) {
-            Logger.getAnonymousLogger().log(Level.WARNING,"Echec à la lecture du fichier de sauvegarde");
+            Logger.getLogger("loadModel").severe("Echec à la lecture du fichier de sauvegarde : " + e.getMessage());
             return false;
         }
     }
@@ -126,11 +127,11 @@ public enum Moteur {
             //create ObjectMapper instance
             ObjectMapper objectMapper = new ObjectMapper();
 
-            File file = ResourceUtils.getFile("classpath:static/Questionnaire_3A.json");
+            InputStream inputStream = new ClassPathResource("static/Questionnaire_3A.json").getInputStream();;
 
-            if( file.exists() ) {
+            if( inputStream.available() > 0 ) {
                 //convert json file to array of Questionnaire3A
-                Questionnaire3A[] q = objectMapper.readValue(new FileInputStream(file), Questionnaire3A[].class);
+                Questionnaire3A[] q = objectMapper.readValue(inputStream, Questionnaire3A[].class);
 
                 // loop on each response to the quizz
                 for (Questionnaire3A questionnaire3A : q) {

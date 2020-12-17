@@ -11,6 +11,7 @@
 	<groupId>com.ensim</groupId>
 	<artifactId>choixAstreIPS</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>choixAstreIPS</name>
 	<description>Choix ASTRE IPS dans le cours d&apos;analyse de données hétérogènes</description>
 
@@ -80,6 +81,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<classifier>spring-boot</classifier>
+							<mainClass>
+								com.ensim.choixAstreIPS.ChoixAstreIpsApplication
+							</mainClass>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

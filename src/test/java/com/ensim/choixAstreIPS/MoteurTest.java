@@ -41,16 +41,15 @@ class MoteurTest {
     @Test
     void addModel() {
 
-        qm = new QuestionModel(1,"Question?", 0.2);
+        /*qm = new QuestionModel(1,"Question?", 0.2);
 
-        m.addModel(qm);
+        m.addModel(qm);*/
 
         assertEquals(1 , m.getModels().size());
     }
 
     @Test
     void loadQuestionnaire3A() {
-        m.loadQuestionnaire3A();
         assertEquals( 37, m.getEtudiants().size() );
     }
 }
