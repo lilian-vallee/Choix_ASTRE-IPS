@@ -18,8 +18,9 @@ public class QuestionModelEditController {
     {
         if(qIndex != -1){
             this.qIndex = qIndex;
-            model.addAttribute("qIndex", this.qIndex);
         }
+
+        model.addAttribute("qIndex", this.qIndex);
 
         QuestionModel questionModel = Moteur.INSTANCE.getModels().get(this.qIndex);
         model.addAttribute("questionModel", questionModel);

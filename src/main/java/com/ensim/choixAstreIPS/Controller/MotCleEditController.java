@@ -22,9 +22,9 @@ public class MotCleEditController {
         if (qIndex != -1){
             this.qIndex = qIndex;
             this.mIndex = mIndex;
-
-            model.addAttribute("qIndex", this.qIndex);
         }
+
+        model.addAttribute("qIndex", this.qIndex);
 
         MotCle motCle;
         if (this.mIndex == -1){
