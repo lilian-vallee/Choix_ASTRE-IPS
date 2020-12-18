@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
     <head th:insert="head">
         <title>QuestionModel</title>
     </head>
@@ -15,6 +14,8 @@
                 <a th:href="@{/QuestionModelEdit(qIndex=${QuestionModel.index-1})}" th:text="${QuestionModel.index} + ' - ' + ${QuestionModel.intitule}"></a>
 
             </ul>
+
+            <a class="btn btn-primary" role="button" th:href="@{/QuestionModelAdd}">Ajouter une nouvelle question</a>
         </div>
 
     </body>

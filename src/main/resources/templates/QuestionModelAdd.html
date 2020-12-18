@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="head">
+        <title>QuestionModelAdd</title>
+    </head>
+    <body>
+        <nav th:insert="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
+
+        <div class="container">
+
+            <a class="btn btn-primary" role="button" th:href="@{/QuestionModel}">Retour aux questions</a>
+
+            <h1>Création de la question</h1>
+
+            <form th:action="@{/QuestionModel}" method="post">
+
+                <fieldset>
+                    <label th:text="${'Index : ' + qm_index}"></label>
+                    <input type="hidden" th:value="${qm_index}" name="index">
+                </fieldset>
+
+                <fieldset>
+                    <label for="intitule">Intitulé :</label>
+                    <input type="text" value="" name="intitule" id="intitule">
+                </fieldset>
+
+                <fieldset>
+                    <label for="coeff">Coefficient :</label>
+                    <input type="number" value="" name="coeff" id="coeff">
+                </fieldset>
+
+                <fieldset>
+                    <input type="submit" value="Save">
+                </fieldset>
+
+            </form>
+
+        </div>
+    </body>
+</html>
