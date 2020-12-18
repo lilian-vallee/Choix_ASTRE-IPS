@@ -7,15 +7,12 @@ import com.ensim.choixAstreIPS.Model.ModelJson.QuestionModelJson;
 import com.ensim.choixAstreIPS.Utils.QuestionUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.util.ResourceUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public enum Moteur {
@@ -150,6 +147,34 @@ public enum Moteur {
            Logger.getLogger("loadQuestionnaire3A").severe("IO error : " + e.getMessage());
            return false;
         }
+        return true;
+    }
+
+    public boolean calcul(int indexEtudiant){
+        Etudiant etudiant = etudiants.get(indexEtudiant);
+
+        double ips = 0;
+        double astre = 0;
+
+        if (etudiant.getReponses().size() == models.size()){
+            return false;
+        }
+
+        int i=0;
+        for (QuestionModel qm : models){
+            String reponse = etudiant.getReponses().get(i).getReponse();
+            for (MotCle mot : qm.getMotsCles()){
+                boolean check = reponse.contains(mot.getMot());
+                if (check){
+                    ips += mot.getIps()*qm.getCoeff();
+                    astre += mot.getAstre()*qm.getCoeff();
+                }
+            }
+            i++;
+        }
+        etudiant.setIps(ips);
+        etudiant.setAstre(astre);
+
         return true;
     }
 }

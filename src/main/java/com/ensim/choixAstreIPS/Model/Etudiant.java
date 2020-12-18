@@ -10,6 +10,9 @@ public class Etudiant {
     @ElementCollection
     private List<Reponse> reponses;
 
+    private double ips;
+    private double astre;
+
     public Etudiant(){}
 
     public Etudiant(String id, List<Reponse> reponses) {
@@ -32,6 +35,14 @@ public class Etudiant {
     public void setReponses(List<Reponse> reponses) {
         this.reponses = reponses;
     }
+
+    public double getIps() { return ips; }
+
+    public void setIps(double ips) { this.ips = ips; }
+
+    public double getAstre() { return astre; }
+
+    public void setAstre(double astre) { this.astre = astre; }
 
     @Override
     public String toString() {
