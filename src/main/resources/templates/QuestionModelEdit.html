@@ -8,30 +8,30 @@
         <nav th:insert="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
 
         <div class="container">
+
+            <a th:href="@{/QuestionModel}" >retour aux questions</a>
+
             <h1>Paramètre de la question :</h1>
 
             <form action="#" th:action="@{/QuestionModelEdit}" th:object="${questionModel}" method="post">
 
-                <p th:text="${'Index : ' + questionModel.index}">
-
-                </p>
+                <p th:text="${'Index : ' + questionModel.index}"></p>
                 <input type="hidden" value="${questionModel.index}" th:field="*{index}">
 
-                <p>Intitulé : <input type="text" value="${question.intitule}"th:field="*{intitule}">
-                </p>
-
+                <p>Intitulé : <input type="text" value="${question.intitule}"th:field="*{intitule}"></p>
                 <p>Coefficient : <input type="number" th:field="*{coeff}"></p>
-
                 <input type="submit" value="Save">
+
             </form>
+
 
             <ul th:each="motCle: ${getMotsCles}">
 
-                <a th:href="@{/MotCleEdit(qIndex = ${questionModel.index-1},mIndex=${getMotsCles.indexOf(motCle)})}" th:text="${motCle.mot} + ' - IPS : ' + ${motCle.ips} + ' ; ASTRE : ' + ${motCle.astre}"></a>
+                <a th:href="@{/MotCleEdit(qIndex = ${qIndex},mIndex=${getMotsCles.indexOf(motCle)})}" th:text="${motCle.mot} + ' - IPS : ' + ${motCle.ips} + ' ; ASTRE : ' + ${motCle.astre}"></a>
 
             </ul>
 
-            <a th:href="@{/MotCleEdit(qIndex = ${questionModel.index-1},mIndex=-1)}">Nouveau mot Clé</a>
+            <a th:href="@{/MotCleEdit(qIndex = ${qIndex}, mIndex=-1)}">Nouveau mot Clé</a>
 
         </div>
     </body>

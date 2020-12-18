@@ -12,7 +12,7 @@
 
             <ul th:each="QuestionModel: ${allQuestionsModels}">
 
-                <a th:href="@{/QuestionModelEdit(index=${QuestionModel.index})}" th:text="${QuestionModel.index} + ' - ' + ${QuestionModel.intitule}"></a>
+                <a th:href="@{/QuestionModelEdit(qIndex=${QuestionModel.index-1})}" th:text="${QuestionModel.index} + ' - ' + ${QuestionModel.intitule}"></a>
 
             </ul>
         </div>
