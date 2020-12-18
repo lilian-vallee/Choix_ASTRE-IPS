@@ -9,30 +9,42 @@
 
         <div class="container">
 
-            <a th:href="@{/QuestionModel}" >retour aux questions</a>
+            <a class="btn btn-primary" role="button" th:href="@{/QuestionModel}" >Retour aux questions</a>
 
-            <h1>Paramètre de la question :</h1>
+            <h1>Édition de la question</h1>
 
-            <form action="#" th:action="@{/QuestionModelEdit}" th:object="${questionModel}" method="post">
+            <section>
+                <h2>Paramètres</h2>
+                <form th:action="@{/QuestionModelEdit}" th:object="${questionModel}" method="post">
+                    <fieldset class="form-group">
+                        <p th:text="${'Index : ' + questionModel.index}"></p>
+                        <input class="form-control" type="hidden" value="${questionModel.index}" th:field="*{index}">
+                    </fieldset>
 
-                <p th:text="${'Index : ' + questionModel.index}"></p>
-                <input type="hidden" value="${questionModel.index}" th:field="*{index}">
+                    <fieldset class="form-group">
+                        <label for="intitule">Intitulé : </label>
+                        <input class="form-control" type="text" value="${question.intitule}"th:field="*{intitule}" id="intitule" required>
+                    </fieldset>
 
-                <p>Intitulé : <input type="text" value="${question.intitule}"th:field="*{intitule}"></p>
-                <p>Coefficient : <input type="number" th:field="*{coeff}"></p>
-                <input type="submit" value="Save">
+                    <fieldset class="form-group">
+                        <label for="coeff">Coefficient : </label>
+                        <input class="form-control" type="number" th:field="*{coeff}" id="coeff" min="0" placeholder="1.0" step="0.1" required>
+                    </fieldset>
 
-            </form>
+                    <fieldset class="form-group">
+                        <input class="form-control" type="submit" value="Sauvegarder">
+                    </fieldset>
+                </form>
+            </section>
 
+            <section>
+                <h2>Mots-clés associés</h2>
+                <ul th:each="motCle: ${getMotsCles}">
+                    <a th:href="@{/MotCleEdit(qIndex = ${qIndex},mIndex=${getMotsCles.indexOf(motCle)})}" th:text="${motCle.mot} + ' - IPS : ' + ${motCle.ips} + ' ; ASTRE : ' + ${motCle.astre}"></a>
+                </ul>
 
-            <ul th:each="motCle: ${getMotsCles}">
-
-                <a th:href="@{/MotCleEdit(qIndex = ${qIndex},mIndex=${getMotsCles.indexOf(motCle)})}" th:text="${motCle.mot} + ' - IPS : ' + ${motCle.ips} + ' ; ASTRE : ' + ${motCle.astre}"></a>
-
-            </ul>
-
-            <a th:href="@{/MotCleEdit(qIndex = ${qIndex}, mIndex=-1)}">Nouveau mot Clé</a>
-
+                <a class="btn btn-primary" role="button" th:href="@{/MotCleEdit(qIndex = ${qIndex}, mIndex=-1)}">Ajouter un mot-clé</a>
+            </section>
         </div>
     </body>
 </html>

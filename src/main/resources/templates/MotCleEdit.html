@@ -9,19 +9,33 @@
 
         <div class="container">
 
-            <a th:href="@{/QuestionModelEdit(qIndex=${qIndex})}">retour à la question</a>
+            <a class="btn btn-primary" role="button" th:href="@{/QuestionModelEdit(qIndex=${qIndex})}">Retour à la question</a>
 
-            <h1>Paramètre du mot :</h1>
+            <h1>Édition du mot-clé</h1>
 
-            <form action="#" th:action="@{/MotCleEdit}" th:object="${motCle}" method="post">
+            <section>
+                <h2>Paramètres</h2>
+                <form th:action="@{/MotCleEdit}" th:object="${motCle}" method="post">
+                    <fieldset class="form-group">
+                        <label for="mot">mot : </label>
+                        <input class="form-control" type="text" value="${motCle.mot}" th:field="*{mot}" id="mot" min="0" placeholder="1" required>
+                    </fieldset>
 
-                <p>mot : <input type="text" value="${motCle.mot}" th:field="*{mot}"></p>
-                <p>IPS : <input type="number" value="${motCle.ips}" th:field="*{ips}">
-                <p>ASTRE : <input type="number" value="${motCle.astre}" th:field="*{astre}">
+                    <fieldset class="form-group">
+                        <label for="ips">IPS : </label>
+                        <input class="form-control" type="number" value="${motCle.ips}" th:field="*{ips}" id="ips" min="0" placeholder="1" required>
+                    </fieldset>
 
-                <input type="submit" value="Save">
-            </form>
+                    <fieldset class="form-group">
+                        <label for="astre">ASTRE : </label>
+                        <input class="form-control" type="number" value="${motCle.astre}" th:field="*{astre}" id="astre" min="0" placeholder="1" required>
+                    </fieldset>
 
+                    <fieldset class="form-group">
+                        <input class="form-control" type="submit" value="Sauvegarder">
+                    </fieldset>
+                </form>
+            </section>
         </div>
     </body>
 </html>

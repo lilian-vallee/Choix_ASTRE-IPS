@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class QuestionModelController {
 
     @GetMapping("/QuestionModel")
-    public String getModels(Model model) {
+    public String getModels(@RequestParam(required = false, defaultValue = "false") boolean save, Model model) {
+        if( save ) Moteur.INSTANCE.saveModel("Model_Save");
         model.addAttribute("allQuestionsModels", Moteur.INSTANCE.getModels());
         return "QuestionModel";
     }

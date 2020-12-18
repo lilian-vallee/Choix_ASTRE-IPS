@@ -16,6 +16,13 @@
             </ul>
 
             <a class="btn btn-primary" role="button" th:href="@{/QuestionModelAdd}">Ajouter une nouvelle question</a>
+
+            <form th:action="@{/QuestionModel}" method="get">
+                <fieldset class="form-group">
+                    <input type="hidden" value="true" name="save">
+                    <input class="form-control" type="submit" value="Save">
+                </fieldset>
+            </form>
         </div>
 
     </body>

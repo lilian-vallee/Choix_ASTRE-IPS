@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class QuestionModelEditController {
 
     private int qIndex;
+    private QuestionModel questionModel;
 
     @GetMapping("/QuestionModelEdit")
     public String getModels(@RequestParam(required = false, defaultValue = "-1") int qIndex,
@@ -22,7 +23,7 @@ public class QuestionModelEditController {
 
         model.addAttribute("qIndex", this.qIndex);
 
-        QuestionModel questionModel = Moteur.INSTANCE.getModels().get(this.qIndex);
+        questionModel = Moteur.INSTANCE.getModels().get(this.qIndex);
         model.addAttribute("questionModel", questionModel);
         model.addAttribute("getMotsCles", questionModel.getMotsCles());
         return "QuestionModelEdit";
@@ -34,6 +35,7 @@ public class QuestionModelEditController {
     {
         Moteur.INSTANCE.getModels().get(this.qIndex).setIntitule(questionModel.getIntitule());
         Moteur.INSTANCE.getModels().get(this.qIndex).setCoeff(questionModel.getCoeff());
+        model.addAttribute("getMotsCles", this.questionModel.getMotsCles());
         return "QuestionModelEdit";
     }
 }

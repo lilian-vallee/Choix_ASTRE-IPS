@@ -13,28 +13,25 @@
             <h1>Création de la question</h1>
 
             <form th:action="@{/QuestionModel}" method="post">
-
-                <fieldset>
-                    <label th:text="${'Index : ' + qm_index}"></label>
+                <fieldset class="form-group">
+                    <p th:text="${'Index : ' + qm_index}"></p>
                     <input type="hidden" th:value="${qm_index}" name="index">
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="form-group">
                     <label for="intitule">Intitulé :</label>
-                    <input type="text" value="" name="intitule" id="intitule">
+                    <input class="form-control" type="text" value="" name="intitule" id="intitule" required>
                 </fieldset>
 
-                <fieldset>
+                <fieldset class="form-group">
                     <label for="coeff">Coefficient :</label>
-                    <input type="number" value="" name="coeff" id="coeff">
+                    <input class="form-control" type="number" value="" name="coeff" id="coeff" min="0" placeholder="1.0" step="0.1" required>
                 </fieldset>
 
-                <fieldset>
-                    <input type="submit" value="Save">
+                <fieldset class="form-group">
+                    <input class="form-control" type="submit" value="Save">
                 </fieldset>
-
             </form>
-
         </div>
     </body>
 </html>
