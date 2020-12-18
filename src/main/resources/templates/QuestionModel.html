@@ -4,7 +4,7 @@
         <title>QuestionModel</title>
     </head>
     <body>
-        <nav th:insert="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
+        <nav th:insert="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark mb-3"></nav>
 
         <div class="container">
             <h1>Liste des Questions</h1>
@@ -15,12 +15,12 @@
 
             </ul>
 
-            <a class="btn btn-primary" role="button" th:href="@{/QuestionModelAdd}">Ajouter une nouvelle question</a>
+            <a class="btn btn-primary mb-3" role="button" th:href="@{/QuestionModelAdd}">Ajouter une nouvelle question</a>
 
             <form th:action="@{/QuestionModel}" method="get">
                 <fieldset class="form-group">
                     <input type="hidden" value="true" name="save">
-                    <input class="form-control" type="submit" value="Save">
+                    <input type="submit" value="Sauvegarder le modèle de question">
                 </fieldset>
             </form>
         </div>

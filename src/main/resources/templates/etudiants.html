@@ -4,7 +4,7 @@
         <title>Etudiants</title>
     </head>
     <body>
-        <nav th:insert="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
+        <nav th:insert="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark mb-3"></nav>
         <div class="container">
             <h1>Liste des étudiants</h1>
 
@@ -16,26 +16,30 @@
                 </ul>
             </nav>
 
-            <h1 th:text="'Etudiant ' + (${etudiant.id == null} ? 'non sélectionné' : ${etudiant.id})"></h1>
+            <section>
+                <h2 th:text="'Etudiant ' + (${etudiant.id == null} ? 'non sélectionné' : ${etudiant.id})"></h2>
 
-            <div class="table-responsive">
-                <table class="table table-stripped">
-                    <thead class="thead-light">
-                    <tr class="d-flex">
-                        <th scope="col" class="col-2">#</th>
-                        <th scope="col" class="col-5">Question</th>
-                        <th scope="col" class="col-5">Réponse</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="reponse: ${etudiant.reponses}" class="d-flex">
-                        <td scope="row" th:text="${reponse.index}" class="col-2"></td>
-                        <td th:text="${reponse.intitule}" class="col-5"></td>
-                        <td th:text="${reponse.reponse}" class="col-5"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                <a th:if="${etudiant.id != null}" class="btn btn-primary form-control mb-3 mt-3" th:href=" ${'/choix?etu=' + etudiant.id}"> Voir sa future spécialité</a>
+
+                <div class="table-responsive">
+                    <table class="table table-stripped">
+                        <thead class="thead-light">
+                        <tr class="d-flex">
+                            <th scope="col" class="col-2">#</th>
+                            <th scope="col" class="col-5">Question</th>
+                            <th scope="col" class="col-5">Réponse</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="reponse: ${etudiant.reponses}" class="d-flex">
+                            <td scope="row" th:text="${reponse.index}" class="col-2"></td>
+                            <td th:text="${reponse.intitule}" class="col-5"></td>
+                            <td th:text="${reponse.reponse}" class="col-5"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </div>
     </body>
 </html>

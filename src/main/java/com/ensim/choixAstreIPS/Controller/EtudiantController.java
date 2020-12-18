@@ -35,4 +35,14 @@ public class EtudiantController {
 
         return "etudiants";
     }
+
+    @GetMapping("/choix")
+    public String getChoix(@RequestParam String etu, Model model) {
+        Etudiant etud = new Etudiant();
+        if(etudiantRepository.findById(etu).isPresent() ) {
+            etud = etudiantRepository.findById(etu).get();
+        }
+        model.addAttribute("etudiant", etud );
+        return "choix";
+    }
 }

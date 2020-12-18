@@ -150,22 +150,24 @@ public enum Moteur {
         return true;
     }
 
-    public boolean calcul(int indexEtudiant){
-        Etudiant etudiant = etudiants.get(indexEtudiant);
-
-        double ips = 0;
-        double astre = 0;
-
-        if (etudiant.getReponses().size() == models.size()){
+    /**
+     * Calcule le score des affinités ASTRE ou IPS pour un étudiant donné
+     * @param etudiant
+     * @return
+     */
+    public boolean calcul(Etudiant etudiant){
+        if (etudiant.getReponses().size() != models.size()){
             return false;
         }
 
+        double ips = 0;
+        double astre = 0;
         int i=0;
+
         for (QuestionModel qm : models){
             String reponse = etudiant.getReponses().get(i).getReponse();
             for (MotCle mot : qm.getMotsCles()){
-                boolean check = reponse.contains(mot.getMot());
-                if (check){
+                if ( reponse.contains(mot.getMot()) ){
                     ips += mot.getIps()*qm.getCoeff();
                     astre += mot.getAstre()*qm.getCoeff();
                 }
