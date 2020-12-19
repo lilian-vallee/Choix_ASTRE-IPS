@@ -45,7 +45,7 @@ class MoteurTest {
 
         m.addModel(qm);*/
 
-        assertEquals(1 , m.getModels().size());
+        assertEquals(38 , m.getModels().size());
     }
 
     @Test
