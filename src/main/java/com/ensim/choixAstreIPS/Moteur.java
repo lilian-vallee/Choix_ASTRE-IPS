@@ -156,13 +156,13 @@ public enum Moteur {
      * @return
      */
     public boolean calcul(Etudiant etudiant){
-        if (etudiant.getReponses().size() != models.size()){
+        if (etudiant.getReponses().size()-1 != models.size()){
             return false;
         }
 
         double ips = 0;
         double astre = 0;
-        int i=0;
+        int i=1;
 
         for (QuestionModel qm : models){
             String reponse = etudiant.getReponses().get(i).getReponse();

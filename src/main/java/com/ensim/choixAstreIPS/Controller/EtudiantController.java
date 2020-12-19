@@ -32,7 +32,6 @@ public class EtudiantController {
             etud = etudiantRepository.findById(etu).get();
         }
         model.addAttribute("etudiant", etud );
-
         return "etudiants";
     }
 
@@ -42,6 +41,7 @@ public class EtudiantController {
         if(etudiantRepository.findById(etu).isPresent() ) {
             etud = etudiantRepository.findById(etu).get();
         }
+        Moteur.INSTANCE.calcul(etud);
         model.addAttribute("etudiant", etud );
         return "choix";
     }
