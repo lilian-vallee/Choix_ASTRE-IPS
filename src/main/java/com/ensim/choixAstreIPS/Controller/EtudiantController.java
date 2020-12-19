@@ -37,6 +37,11 @@ public class EtudiantController {
 
     @GetMapping("/choix")
     public String getChoix(@RequestParam String etu, Model model) {
+        if( etudiantRepository.count() == 0 ) {
+            etudiantRepository.saveAll(Moteur.INSTANCE.getEtudiants());
+        }
+        model.addAttribute("allEtudiants", etudiantRepository.findAll());
+
         Etudiant etud = new Etudiant();
         if(etudiantRepository.findById(etu).isPresent() ) {
             etud = etudiantRepository.findById(etu).get();

@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:insert="head">
+    <head th:insert="head"></head>
+    <head>
         <title>Choix de l'étudiant</title>
-        <link href="../static/js/drawChart.js" th:href="@{/js/drawChart.js}"
-              rel="javascript" />
+        <link rel="stylesheet" href="webjars/chartjs/2.9.3/Chart.css">
+        <script src="webjars/chartjs/2.9.3/Chart.min.js"></script>
     </head>
     <body>
         <nav th:insert="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark mb-3"></nav>
         <div class="container">
             <h1 th:text="${'Choix de ' + etudiant.id}"></h1>
 
-            <p th:text="${etudiant.ips}"></p>
-            <p th:text="${etudiant.astre}"></p>
+            <nav aria-label="pagination">
+                <ul class="pagination justify-content-center flex-wrap">
+                    <li th:class="'page-item' + (${etud.id == etudiant.id} ? ' active' : '')" th:each="etud, iter : ${allEtudiants}">
+                        <a class="page-link" th:href="'?etu=' + ${etud.id}" th:text="${iter.count}"></a>
+                    </li>
+                </ul>
+            </nav>
 
             <canvas id="myChart" width="200" height="200">Your browser does not support the canvas element.</canvas>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
             <script th:inline="javascript">
             /*<![CDATA[*/
                 var ctx = document.getElementById('myChart').getContext('2d');
