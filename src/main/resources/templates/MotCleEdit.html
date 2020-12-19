@@ -18,17 +18,17 @@
                 <form th:action="@{/MotCleEdit}" th:object="${motCle}" method="post">
                     <fieldset class="form-group">
                         <label for="mot">mot : </label>
-                        <input class="form-control" type="text" value="${motCle.mot}" th:field="*{mot}" id="mot" min="0" placeholder="1" required>
+                        <input class="form-control" type="text" value="${motCle.mot}" th:field="*{mot}" id="mot"  placeholder="1" required>
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label for="ips">IPS : </label>
-                        <input class="form-control" type="number" value="${motCle.ips}" th:field="*{ips}" id="ips" min="0" placeholder="1" required>
+                        <input class="form-control" type="number" value="${motCle.ips}" th:field="*{ips}" id="ips"  placeholder="1" required>
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label for="astre">ASTRE : </label>
-                        <input class="form-control" type="number" value="${motCle.astre}" th:field="*{astre}" id="astre" min="0" placeholder="1" required>
+                        <input class="form-control" type="number" value="${motCle.astre}" th:field="*{astre}" id="astre"  placeholder="1" required>
                     </fieldset>
 
                     <fieldset class="form-group">
